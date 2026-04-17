@@ -72,9 +72,6 @@
     <a onclick="show('home')">Home</a>
     <a onclick="show('about')">About Me</a>
     <a onclick="show('outputs')">Outputs</a>
-    <a onclick="show('quiz')">Quiz</a>
-    <a onclick="show('lab')">Lab</a>
-    <a onclick="show('exam')">Exam</a>
   </nav>
 </header>
 
@@ -114,38 +111,6 @@
 </section>
 
 
-<section id="quiz">
-  <h3>Quiz Upload</h3>
-
-  <form onsubmit="alert('Uploaded')">
-    <input type="text" placeholder="Title" required>
-    <input type="file" required>
-    <button type="submit">Submit</button>
-  </form>
-</section>
-
-
-<section id="lab">
-  <h3>Lab Upload</h3>
-
-  <form onsubmit="alert('Uploaded')">
-    <input type="text" placeholder="Title" required>
-    <input type="file">
-    <button type="submit">Submit</button>
-  </form>
-</section>
-
-
-<section id="exam">
-  <h3>Exam Upload</h3>
-
-  <form onsubmit="alert('Uploaded')">
-    <input type="text" placeholder="Title">
-    <input type="file">
-    <button type="submit">Submit</button>
-  </form>
-</section>
-
 <script>
 function show(id) {
   let sections = document.querySelectorAll("section");
@@ -154,8 +119,10 @@ function show(id) {
   document.getElementById(id).style.display = "block";
 }
 </script>
+
 <footer>
   <p>joshua.castillo@cvsu.edu.ph</p>
 </footer>
+
 </body>
 </html>
