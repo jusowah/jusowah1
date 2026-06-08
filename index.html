@@ -1,72 +1,240 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Joshua D. Castillo</title>
   <style>
-    body {
-      font-family: Arial;
-      background-color: #111;
-      color: white;
-      margin: 0;
+    /* Modern CSS Variables for easy theme management */
+    :root {
+      --bg-color: #0d0e12;
+      --surface-color: #161822;
+      --surface-accent: #222533;
+      --accent-color: #4f46e5; /* Modern Indigo */
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-radius: 12px;
+      --transition-speed: 0.3s;
     }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* Professional Glassmorphic Header */
     header {
-      background-color: #222;
-      padding: 15px;
-      text-align: center;
+      background-color: rgba(22, 24, 34, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand h2 {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      color: var(--text-main);
+    }
+
+    .brand p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Clean Navigation with active states */
+    nav {
+      display: flex;
+      gap: 20px;
     }
 
     nav a {
-      margin: 5px;
-      color: white;
+      color: var(--text-muted);
       text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
       cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all var(--transition-speed) ease;
+    }
+
+    nav a:hover, nav a.active-nav {
+      color: var(--text-main);
+      background-color: var(--surface-accent);
+    }
+
+    /* Content Layout */
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      min-height: 70vh;
     }
 
     section {
       display: none;
-      padding: 20px;
+      animation: fadeIn 0.4s ease forward;
     }
 
-    .active {
+    section.active-section {
       display: block;
     }
 
-    img {
-      width: 50%;
-      display: block;
-      margin: 10px auto;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      position: relative;
+      display: inline-block;
+    }
+
+    h3::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    /* Hero Section (Home) */
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .hero-img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--surface-accent);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* About Section */
+    .about-content {
+      background-color: var(--surface-color);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .about-content p {
+      margin-bottom: 16px;
+    }
+
+    /* Outputs Dashboard Grid */
+    .outputs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
     }
 
     .card {
-      border: 1px solid gray;
-      padding: 10px;
-      margin: 10px 0;
+      background-color: var(--surface-color);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
     }
 
-    /* New style for the output titles */
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+      border-color: rgba(79, 70, 229, 0.3);
+    }
+
+    .card-body {
+      padding: 18px;
+      text-align: center;
+    }
+
     .card-title {
-      font-size: 1.3rem; /* Makes the text bigger */
-      font-weight: bold;  /* Makes it stand out */
-      text-align: center; /* Centers the text */
-      margin-top: 5px;
-      margin-bottom: 15px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
     }
 
-    input, textarea {
+    .card img {
       width: 100%;
-      margin: 5px 0;
+      height: 220px;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      display: block;
     }
 
-    button {
-      margin-top: 10px;
-    }
+    /* Premium Footer */
     footer {
       text-align: center;
-      padding: 10px;
-      background-color: #222;
-      color: gray;
-      margin-top: 20px;
+      padding: 30px;
+      background-color: var(--surface-color);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 80px;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition-speed);
+    }
+
+    footer a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+      .hero-text h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
@@ -74,82 +242,110 @@
 <body>
 
 <header>
-  <h2>MY PORTFOLIO</h2>
-  <p>JOSHUA D. CASTILLO</p>
+  <div class="brand">
+    <h2>MY PORTFOLIO</h2>
+    <p>JOSHUA D. CASTILLO</p>
+  </div>
 
   <nav>
-    <a onclick="show('home')">Home</a>
-    <a onclick="show('about')">About Me</a>
-    <a onclick="show('outputs')">Outputs</a>
+    <a id="nav-home" class="active-nav" onclick="show('home')">Home</a>
+    <a id="nav-about" onclick="show('about')">About Me</a>
+    <a id="nav-outputs" onclick="show('outputs')">Outputs</a>
   </nav>
 </header>
 
+<main>
+  <!-- Home Section -->
+  <section id="home" class="active-section">
+    <div class="hero-container">
+      <img class="hero-img" src="IMG_0868.jpeg" alt="Joshua D. Castillo">
+      <div class="hero-text">
+        <h1>Hi, I'm Joshua</h1>
+        <p>Welcome to my academic portfolio for <strong>ITEC50</strong>.</p>
+      </div>
+    </div>
+  </section>
 
-<section id="home" class="active">
-  <h3>Home</h3>
-  <img src="IMG_0868.jpeg">
+  <!-- About Me Section -->
+  <section id="about">
+    <h3>About Me</h3>
+    <div class="about-content">
+      <p>I am based in Dasmariñas, Cavite. I graduated Senior High School with Honors from the Philippine Christian University - Dasmariñas under the Science, Technology, Engineering, and Mathematics (STEM) strand.</p>
+      <p>Outside of my academic pursuits, I have a deep fascination with astronomy and love keeping up with movies and TV shows during my downtime. I am consistently looking for ways to expand my skillset, particularly within software development and coding.</p>
+    </div>
+  </section>
 
-  <p>Hello, I am Joshua. This is my portfolio for ITEC50</p>
+  <!-- Outputs Section -->
+  <section id="outputs">
+    <h3>Academic Outputs</h3>
 
-</section>
+    <div class="outputs-grid">
+      <div class="card">
+        <img src="IMG_1575.jpeg" alt="Quiz 1 Screenshot">
+        <div class="card-body">
+          <p class="card-title">Quiz 1</p>
+        </div>
+      </div>
 
+      <div class="card">
+        <img src="IMG_1576.jpeg" alt="Quiz 2 Screenshot">
+        <div class="card-body">
+          <p class="card-title">Quiz 2</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <img src="IMG_1845.jpeg" alt="Quiz 3 Screenshot">
+        <div class="card-body">
+          <p class="card-title">Quiz 3</p>
+        </div>
+      </div>
 
-<section id="about">
-  <h3>About Me</h3>
-  <p>I am from Dasmariñas, Cavite, born in January 2006. I graduated Senior High School from Philippine Christian University - Dasmariñas under the STEM strand with Honors.</p>
-<br>
-  <p>I love astronomy and enjoy watching movies and TV shows in my free time. I’m always eager to learn new things and improve my skills, especially in coding.</p>
-</section>
+      <div class="card">
+        <img src="IMG_1844.jpeg" alt="Lab 1 Screenshot">
+        <div class="card-body">
+          <p class="card-title">Lab 1</p>
+        </div>
+      </div>
 
+      <div class="card">
+        <img src="IMG_1843.jpeg" alt="Lab 2 Screenshot">
+        <div class="card-body">
+          <p class="card-title">Lab 2</p>
+        </div>
+      </div>
 
-<section id="outputs">
-  <h3>Outputs</h3>
+      <div class="card">
+        <img src="IMG_1842.jpeg" alt="Midterms Exam Screenshot">
+        <div class="card-body">
+          <p class="card-title">Midterms Exam</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
-  <div class="card">
-    <p class="card-title">Quiz 1</p>
-    <img src="IMG_1575.jpeg">
-  </div>
-
-  <div class="card">
-    <p class="card-title">Quiz 2</p>
-    <img src="IMG_1576.jpeg">
-  </div>
-  
-  <div class="card">
-    <p class="card-title">Quiz 3</p>
-    <img src="IMG_1845.jpeg">
-  </div>
-
-  <div class="card">
-    <p class="card-title">Lab 1</p>
-    <img src="IMG_1844.jpeg">
-  </div>
-
-  <div class="card">
-    <p class="card-title">Lab 2</p>
-    <img src="IMG_1843.jpeg">
-  </div>
-
-  <div class="card">
-    <p class="card-title">Midterms Exam</p>
-    <img src="IMG_1842.jpeg">
-  </div>
-</section>
-
+<footer>
+  <p>&copy; 2026 Joshua D. Castillo | <a href="mailto:joshua.castillo@cvsu.edu.ph">joshua.castillo@cvsu.edu.ph</a></p>
+</footer>
 
 <script>
 function show(id) {
+  // Hide all sections and remove show animation layout
   let sections = document.querySelectorAll("section");
-  sections.forEach(s => s.style.display = "none");
+  sections.forEach(s => s.classList.remove("active-section"));
 
-  document.getElementById(id).style.display = "block";
+  // Remove active styling from all nav items
+  let navItems = document.querySelectorAll("nav a");
+  navItems.forEach(nav => nav.classList.remove("active-nav"));
+
+  // Activate chosen section and matching nav menu link
+  document.getElementById(id).classList.add("active-section");
+  document.getElementById("nav-" + id).classList.add("active-nav");
 }
 </script>
 
-<footer>
-  <p>joshua.castillo@cvsu.edu.ph</p>
-</footer>
-
 </body>
 </html>
+
 
