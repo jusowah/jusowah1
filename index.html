@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio | Joshua D. Castillo</title>
   
-  <!-- Font Awesome for Social Media Icons -->
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <style>
@@ -33,7 +33,7 @@
       line-height: 1.6;
     }
 
-    /* Fixed Header: Stacked and perfectly centered */
+    
     header {
       background-color: rgba(22, 24, 34, 0.8);
       backdrop-filter: blur(12px);
@@ -84,7 +84,7 @@
       background-color: var(--surface-accent);
     }
 
-    /* Main Container Layout */
+    
     main {
       max-width: 1100px;
       margin: 40px auto;
@@ -124,7 +124,7 @@
       border-radius: 2px;
     }
 
-    /* Home (Hero) Section */
+    
     .hero-container {
       display: flex;
       flex-direction: column;
@@ -154,7 +154,7 @@
       font-size: 1.1rem;
     }
 
-    /* About Section */
+    
     .about-content {
       background-color: var(--surface-color);
       padding: 30px;
@@ -168,7 +168,7 @@
       margin-bottom: 16px;
     }
 
-    /* Outputs Card Layout Grid */
+    
     .outputs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -192,7 +192,7 @@
       border-color: rgba(79, 70, 229, 0.3);
     }
 
-    /* Fixed Image Size & Full View Containment */
+    
     .card-img-wrapper {
       width: 100%;
       height: 240px;
@@ -229,7 +229,7 @@
       color: var(--text-main);
     }
 
-    /* Interactive Fullscreen Pop-up (Modal) Box */
+    
     .modal {
       display: none;
       position: fixed;
@@ -276,7 +276,7 @@
       color: var(--accent-color);
     }
 
-    /* Premium Footer with Social Block Styling */
+    
     footer {
       text-align: center;
       padding: 30px;
@@ -320,7 +320,7 @@
 
 <body>
 
-<!-- Stacked Centered Header Banner -->
+
 <header>
   <div class="brand">
     <h2>MY PORTFOLIO</h2>
@@ -335,7 +335,7 @@
 </header>
 
 <main>
-  <!-- Home Section -->
+  
   <section id="home" class="active-section">
     <div class="hero-container">
       <img class="hero-img" src="IMG_0868.jpeg" alt="Joshua D. Castillo" onclick="openLightbox(this)">
@@ -346,7 +346,7 @@
     </div>
   </section>
 
-  <!-- About Me Section -->
+  
   <section id="about">
     <h3>About Me</h3>
     <div class="about-content">
@@ -355,7 +355,7 @@
     </div>
   </section>
 
-  <!-- Outputs Section -->
+  
   <section id="outputs">
     <h3>Academic Outputs</h3>
 
@@ -417,13 +417,13 @@
   </section>
 </main>
 
-<!-- Lightbox Modal Component Box -->
+
 <div id="imageModal" class="modal" onclick="closeLightbox()">
   <span class="close-btn" onclick="closeLightbox()">&times;</span>
   <img class="modal-content" id="modalImg">
 </div>
 
-<!-- Modern Footer Frame -->
+
 <footer>
   <div class="social-links">
     <a href="https://github.com/jusowah" target="_blank" class="social-icon" title="GitHub Profile">
@@ -437,7 +437,7 @@
 </footer>
 
 <script>
-// Section Toggling Script Logic
+
 function show(id) {
   let sections = document.querySelectorAll("section");
   sections.forEach(s => s.classList.remove("active-section"));
@@ -449,7 +449,7 @@ function show(id) {
   document.getElementById("nav-" + id).classList.add("active-nav");
 }
 
-// Interactive Lightbox Script Logic
+
 function openLightbox(element) {
   let modal = document.getElementById("imageModal");
   let modalImg = document.getElementById("modalImg");
