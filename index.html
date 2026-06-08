@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio | Joshua D. Castillo</title>
   <style>
-    /* Modern CSS Variables for easy theme management */
     :root {
       --bg-color: #0d0e12;
       --surface-color: #161822;
       --surface-accent: #222533;
-      --accent-color: #4f46e5; /* Modern Indigo */
+      --accent-color: #4f46e5;
       --text-main: #f3f4f6;
       --text-muted: #9ca3af;
       --border-radius: 12px;
@@ -30,37 +29,39 @@
       line-height: 1.6;
     }
 
-    /* Professional Glassmorphic Header */
+    /* Fixed Header: Now stacked and perfectly centered */
     header {
       background-color: rgba(22, 24, 34, 0.8);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      padding: 20px 40px;
+      padding: 25px 20px;
       position: sticky;
       top: 0;
       z-index: 100;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
+      text-align: center;
+      gap: 15px;
     }
 
     .brand h2 {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       letter-spacing: 2px;
       color: var(--text-main);
     }
 
     .brand p {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
       font-weight: 500;
+      margin-top: 2px;
     }
 
-    /* Clean Navigation with active states */
     nav {
       display: flex;
-      gap: 20px;
+      gap: 15px;
     }
 
     nav a {
@@ -69,7 +70,7 @@
       font-size: 0.95rem;
       font-weight: 500;
       cursor: pointer;
-      padding: 6px 12px;
+      padding: 6px 16px;
       border-radius: 6px;
       transition: all var(--transition-speed) ease;
     }
@@ -79,7 +80,7 @@
       background-color: var(--surface-accent);
     }
 
-    /* Content Layout */
+    /* Main Container Layout */
     main {
       max-width: 1100px;
       margin: 40px auto;
@@ -89,7 +90,7 @@
 
     section {
       display: none;
-      animation: fadeIn 0.4s ease forward;
+      animation: fadeIn 0.4s ease forwards;
     }
 
     section.active-section {
@@ -119,7 +120,7 @@
       border-radius: 2px;
     }
 
-    /* Hero Section (Home) */
+    /* Home (Hero) Section */
     .hero-container {
       display: flex;
       flex-direction: column;
@@ -136,6 +137,7 @@
       border-radius: 50%;
       border: 4px solid var(--surface-accent);
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      cursor: pointer; /* Clickable image */
     }
 
     .hero-text h1 {
@@ -162,7 +164,7 @@
       margin-bottom: 16px;
     }
 
-    /* Outputs Dashboard Grid */
+    /* Outputs Card Layout Grid */
     .outputs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -176,6 +178,8 @@
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.03);
       transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+      display: flex;
+      flex-direction: column;
     }
 
     .card:hover {
@@ -184,9 +188,34 @@
       border-color: rgba(79, 70, 229, 0.3);
     }
 
+    /* Fixed Image Size & Full View Containment */
+    .card-img-wrapper {
+      width: 100%;
+      height: 240px;
+      background-color: #08090d; /* Background color for empty letterbox spaces */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      cursor: pointer;
+    }
+
+    .card img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* Shows the full image frame without cutting any corners */
+      transition: transform var(--transition-speed) ease;
+    }
+
+    .card:hover .card-img-wrapper img {
+      transform: scale(1.03);
+    }
+
     .card-body {
       padding: 18px;
       text-align: center;
+      margin-top: auto;
     }
 
     .card-title {
@@ -196,15 +225,54 @@
       color: var(--text-main);
     }
 
-    .card img {
+    /* Interactive Fullscreen Pop-up (Modal) Box */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 40px;
+      left: 0;
+      top: 0;
       width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-      display: block;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(10, 11, 15, 0.95);
+      backdrop-filter: blur(8px);
     }
 
-    /* Premium Footer */
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 85%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      animation: zoomIn 0.25s ease-out;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: 300;
+      transition: color 0.2s;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .close-btn:hover {
+      color: var(--accent-color);
+    }
+
+    /* Footer styling */
     footer {
       text-align: center;
       padding: 30px;
@@ -224,23 +292,12 @@
     footer a:hover {
       color: var(--accent-color);
     }
-
-    /* Responsive adjustments */
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-      }
-      .hero-text h1 {
-        font-size: 2rem;
-      }
-    }
   </style>
 </head>
 
 <body>
 
+<!-- Stacked Centered Header Banner -->
 <header>
   <div class="brand">
     <h2>MY PORTFOLIO</h2>
@@ -258,7 +315,7 @@
   <!-- Home Section -->
   <section id="home" class="active-section">
     <div class="hero-container">
-      <img class="hero-img" src="IMG_0868.jpeg" alt="Joshua D. Castillo">
+      <img class="hero-img" src="IMG_0868.jpeg" alt="Joshua D. Castillo" onclick="openLightbox(this)">
       <div class="hero-text">
         <h1>Hi, I'm Joshua</h1>
         <p>Welcome to my academic portfolio for <strong>ITEC50</strong>.</p>
@@ -281,42 +338,54 @@
 
     <div class="outputs-grid">
       <div class="card">
-        <img src="IMG_1575.jpeg" alt="Quiz 1 Screenshot">
+        <div class="card-img-wrapper" onclick="openLightbox(this.querySelector('img'))">
+          <img src="IMG_1575.jpeg" alt="Quiz 1">
+        </div>
         <div class="card-body">
           <p class="card-title">Quiz 1</p>
         </div>
       </div>
 
       <div class="card">
-        <img src="IMG_1576.jpeg" alt="Quiz 2 Screenshot">
+        <div class="card-img-wrapper" onclick="openLightbox(this.querySelector('img'))">
+          <img src="IMG_1576.jpeg" alt="Quiz 2">
+        </div>
         <div class="card-body">
           <p class="card-title">Quiz 2</p>
         </div>
       </div>
       
       <div class="card">
-        <img src="IMG_1845.jpeg" alt="Quiz 3 Screenshot">
+        <div class="card-img-wrapper" onclick="openLightbox(this.querySelector('img'))">
+          <img src="IMG_1845.jpeg" alt="Quiz 3">
+        </div>
         <div class="card-body">
           <p class="card-title">Quiz 3</p>
         </div>
       </div>
 
       <div class="card">
-        <img src="IMG_1844.jpeg" alt="Lab 1 Screenshot">
+        <div class="card-img-wrapper" onclick="openLightbox(this.querySelector('img'))">
+          <img src="IMG_1844.jpeg" alt="Lab 1">
+        </div>
         <div class="card-body">
           <p class="card-title">Lab 1</p>
         </div>
       </div>
 
       <div class="card">
-        <img src="IMG_1843.jpeg" alt="Lab 2 Screenshot">
+        <div class="card-img-wrapper" onclick="openLightbox(this.querySelector('img'))">
+          <img src="IMG_1843.jpeg" alt="Lab 2">
+        </div>
         <div class="card-body">
           <p class="card-title">Lab 2</p>
         </div>
       </div>
 
       <div class="card">
-        <img src="IMG_1842.jpeg" alt="Midterms Exam Screenshot">
+        <div class="card-img-wrapper" onclick="openLightbox(this.querySelector('img'))">
+          <img src="IMG_1842.jpeg" alt="Midterms Exam">
+        </div>
         <div class="card-body">
           <p class="card-title">Midterms Exam</p>
         </div>
@@ -325,27 +394,45 @@
   </section>
 </main>
 
+<!-- Lightbox Modal Component Box -->
+<div id="imageModal" class="modal" onclick="closeLightbox()">
+  <span class="close-btn" onclick="closeLightbox()">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
 <footer>
   <p>&copy; 2026 Joshua D. Castillo | <a href="mailto:joshua.castillo@cvsu.edu.ph">joshua.castillo@cvsu.edu.ph</a></p>
 </footer>
 
 <script>
+// Section Toggling Script Logic
 function show(id) {
-  // Hide all sections and remove show animation layout
   let sections = document.querySelectorAll("section");
   sections.forEach(s => s.classList.remove("active-section"));
 
-  // Remove active styling from all nav items
   let navItems = document.querySelectorAll("nav a");
   navItems.forEach(nav => nav.classList.remove("active-nav"));
 
-  // Activate chosen section and matching nav menu link
   document.getElementById(id).classList.add("active-section");
   document.getElementById("nav-" + id).classList.add("active-nav");
+}
+
+// Interactive Lightbox Script Logic
+function openLightbox(element) {
+  let modal = document.getElementById("imageModal");
+  let modalImg = document.getElementById("modalImg");
+  
+  modal.style.display = "block";
+  modalImg.src = element.src;
+}
+
+function closeLightbox() {
+  document.getElementById("imageModal").style.display = "none";
 }
 </script>
 
 </body>
 </html>
+
 
 
